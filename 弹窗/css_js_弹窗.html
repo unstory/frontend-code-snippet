@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自适应弹窗</title>
+    <style>
+      html {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-sizing: border-box; /* 设置的宽高包含补白的部分 */
+      }
+
+      *,
+      *:before,
+      *:after {
+        /* 伪元素，所有的元素都加上 box-sizing属性*/
+        box-sizing: inherit;
+      }
+      .dialog {
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 200;
+        /* 遮罩层，不让点击页面内容 */
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      .dialog-main {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+      }
+      .dialog-title {
+        line-height: 50px;
+        padding-left: 15px;
+        border-bottom: 1px solid #ddd;
+      }
+      .dialog-content {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        overflow: auto;
+        max-height: calc(100vh - 200px);
+        max-width: calc(100vw - 100px);
+        min-width: 400px;
+        min-height: 50px;
+      }
+      .dialog-button {
+        height: 50px;
+        display: flex;
+        justify-content: right;
+        padding-right: 10px;
+        align-items: center;
+      }
+      .button {
+        background-color: #06c;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 5px;
+        padding: 5px 15px;
+        cursor: pointer;
+      }
+      .main-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main-body {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dialog">
+      <div class="dialog-main">
+        <div class="dialog-title">提示</div>
+        <div class="dialog-content">自适应弹窗</div>
+        <div class="dialog-button">
+          <div class="button" onclick="hideModal()">确定</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-body">
+      <button class="main-button" onclick="showModal()">Click me</button>
+      <button
+        style="position: absolute; top: 10px; left: 10px"
+        onclick="testMe()"
+      >
+        test me
+      </button>
+    </div>
+    <script>
+      function showModal() {
+        let dom = document.querySelector(".dialog");
+        dom.style.display = "flex";
+      }
+      function hideModal() {
+        let dom = document.querySelector(".dialog");
+        dom.style.display = "none";
+      }
+      function testMe() {
+        alert("test me");
+      }
+    </script>
+  </body>
+</html>
